@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.z2722.sse.model.Fruit;
 import oit.is.z2722.sse.model.FruitMapper;
@@ -44,5 +45,12 @@ public class Sample57Controller {
     model.addAttribute("fruits7", fruits7);
 
     return "sample57.html";
+  }
+
+  @GetMapping("step9")
+  public SseEmitter sample59() {
+    final SseEmitter sseEmitter = new SseEmitter();
+    this.shop57.asyncShowFruitsList(sseEmitter);
+    return sseEmitter;
   }
 }
