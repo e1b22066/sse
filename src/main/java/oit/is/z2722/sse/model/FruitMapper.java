@@ -18,4 +18,7 @@ public interface FruitMapper {
   @Delete("DELETE FROM FRUIT WHERE ID =#{id}")
   boolean deleteById(int id);
 
+  @Update("UPDATE FRUIT SET NAME=#{name}, PRICE=#{price} WHERE ID = #{id}")
+  void updateById(Fruit fruit);
+
 }
