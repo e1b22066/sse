@@ -86,6 +86,3 @@ public class Sample3AuthConfiguration {
   }
 
 }
-
-
-}
