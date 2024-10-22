@@ -11,4 +11,10 @@ import org.apache.ibatis.annotations.Update;
 public interface FruitMapper {
   @Select("SELECT ID, NAME, PRICE FROM FRUIT")
   ArrayList<Fruit> selectAllFruit();
+
+  @Delete("DELETE FROM FRUIT WHERE ID =#{id}")
+  boolean deleteById(int id);
+
+  @Select("select ID, NAME,PRICE from FRUIT WHERE ID = #{id}")
+  Fruit selectById(int id);
 }
