@@ -16,11 +16,19 @@ import oit.is.z2722.sse.service.AsyncCountFruit56;
 @RequestMapping("/sample56")
 public class Sample56Controller {
 
+  // コンソールに出力したいログ情報を簡単に使えるようにするためのクラス
+  // どこのクラスでもgetLogger内のクラス名を替えるだけで使える
+  // 似たようなロガークラスが大量にあるので import org.slf4j.Logger; を間違えないようにすること
   private final Logger logger = LoggerFactory.getLogger(Sample56Controller.class);
 
   @Autowired
   private AsyncCountFruit56 ac56;
 
+  /**
+   * 数字をカウントアップしながらpushしつづけるメソッド
+   *
+   * @return
+   */
   @GetMapping("step1")
   public SseEmitter pushCount() {
     // infoレベルでログを出力する
@@ -38,6 +46,16 @@ public class Sample56Controller {
       emitter.complete();
     }
     return emitter;
+  }
+
+  @GetMapping("step2")
+  public SseEmitter pushFruit() {
+    // infoレベルでログを出力する
+    logger.info("pushFruit");
+    final SseEmitter sseEmitter = new SseEmitter();
+    this.ac56.pushFruit(sseEmitter);
+    return sseEmitter;
+
   }
 
 }
